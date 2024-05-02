@@ -7,18 +7,21 @@ const Home = () => {
     const [redirectUrl,setRedirectUrl] = useState({
         url: ''
     })
-
+    useEffect(() => {
+        handleSubmit
+    },[])
     const handleSubmit = async (e) => {
         e.preventDefault()
         await fetch('http://localhost:3000/url', {
-            method: 'post',
+            method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(redirectUrl)
         });
-        fetchUrlData()
     } 
+    
     return (
         <div className='flex flex-col gap-8'>
+            <h1>Welcom {userInfo?.name}</h1>
             <div className='text-3xl text-blue-500 font-extrabold'>
                 URL shortner
             </div>
@@ -29,9 +32,9 @@ const Home = () => {
                 <button type='submit' className='border-2 p-1 rounded-lg bg-black text-white font-bold hover:bg-gray-700 hover:scale-105 mt-2'>Generate</button>
                 </form>
             </div>
-            <div className='flex flex-col justify-center items-center '>
+            {userInfo && <div className='flex flex-col justify-center items-center '>
                 <URLList/>
-            </div>
+            </div>}
         </div>
     )
 }

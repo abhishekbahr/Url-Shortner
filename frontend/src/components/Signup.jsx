@@ -1,8 +1,9 @@
 import  { useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { useGlobalContext } from '../context/globalContext'
 
 const Signup = () => {
+    const navigate = useNavigate()
     const {SignupUser} = useGlobalContext()
     const [userData,setUserData] = useState({
         name:'',
@@ -15,6 +16,7 @@ const Signup = () => {
         e.preventDefault()
         SignupUser(userData)
         //Todo redirect to home page 
+        navigate('/login')
 
     }
     

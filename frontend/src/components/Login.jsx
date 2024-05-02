@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '../context/globalContext'
 
@@ -10,10 +10,10 @@ const Login = () => {
         password:''
     })
 
-    const handleLogin = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         LoginUser(userData)
-        navigate('/home')
+            // navigate('/home')
     }
     return (
         <div className=" bg-white" >
@@ -22,7 +22,7 @@ const Login = () => {
                     <h1 className="text-3xl font-extrabold mb-6 text-gray-500 text-center">
                         Login to URL Shortner
                     </h1>
-                    <form  className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label
                                 htmlFor="email"
@@ -65,7 +65,6 @@ const Login = () => {
                         
                         <div>
                             <button
-                                onClick={handleLogin}
                                 type="submit"
                                 className="w-full font-bold text-white bg-pink-600 p-2 rounded-md hover:bg-pink-500 focus:outline-none focus:bg-pink-400  focus:ring-2 focus:ring-offset-2 focus:ring-pink-600 transition-colors duration-300"
                             >
@@ -75,7 +74,7 @@ const Login = () => {
                         <div className=" text-sm text-gray-600 text-end  ">
                             <p className="font-bold">
                             Are you new ?{" "}
-                                <Link to='/signup' className="text-blue-600 hover:underline">
+                                <Link to='/' className="text-blue-600 hover:underline">
                                     Create a account
                                 </Link>
                             </p>

@@ -21,7 +21,7 @@ const URLList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {urlList.map((url,index) => {
+                    {urlList?.map((url,index) => {
                         return (
                             <tr key={index}>
                                 <td className='text-sm pr-4 text-gray-600 '>

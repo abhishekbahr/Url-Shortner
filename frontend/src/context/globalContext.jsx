@@ -8,11 +8,7 @@ export const GlobalProvider = ({children}) => {
     const [userInfo,setUserInfo] = useState(null)
 
     
-    const fetchUrlData = async () => {
-        const response = await fetch('http://localhost:3000/url/list')
-        const urls = await response.json()
-        setUrlList(urls)
-    }
+    
 
     const SignupUser = async (data) => {
         const response = await fetch("http://localhost:3000/user/signup",{
@@ -22,6 +18,7 @@ export const GlobalProvider = ({children}) => {
         })
         const result = await response.json()
         setUserInfo(result)
+        console.log(userInfo)
     }
 
     const LoginUser = async (data) => {
@@ -29,7 +26,7 @@ export const GlobalProvider = ({children}) => {
             const response = await fetch("http://localhost:3000/user/login",{
                 method:"POST",
                 body:JSON.stringify(data),
-                headers:{'content-type':"application/json"}
+                headers:{'content-type':"application/json"},  
             })
             const result = await response.json()
             
@@ -39,7 +36,15 @@ export const GlobalProvider = ({children}) => {
             console.log("Error",error)
         }
     }
+    const fetchUrlData = async () => {
+        const response = await fetch('http://localhost:3000/url/list')
+        const urls = await response.json()
+        setUrlList(urls)
+    }
     
+    useEffect(() => {
+        console.log(userInfo)
+    },[userInfo,setUserInfo])
 
 
     return (
@@ -53,21 +58,8 @@ export const GlobalProvider = ({children}) => {
             {children}
         </GlobalContext.Provider>
     )
-
-
 }
 
 export const useGlobalContext = () => {
     return useContext(GlobalContext)
 }
-
-
-
-
-
-
-
-
-
-// await setUserInfo(result)
-//         console.log(userInfo)
